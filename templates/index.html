@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Docente AEC 2026 - CTPAMM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=aspect-ratio"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .container {
+            max-width: 800px;
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            transition: transform 0.2s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 p-4 md:p-8">
+    <div class="container mx-auto">
+        <header class="text-center mb-10 bg-white p-8 rounded-3xl shadow-sm border-t-4 border-blue-600">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">Relevamiento de Acuerdos Escolares de Convivencia (AEC) 2026</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-blue-600 mb-2">Comunidad Docente</h2>
+            <p class="text-lg text-slate-600">Colegio Técnico Provincial "Antonio Martín Marte"</p>
+            <div class="mt-6 p-4 bg-blue-50 rounded-xl text-left border border-blue-100">
+                <p class="text-md text-slate-700 leading-relaxed">
+                    Estimado/a Colega: <br><br>
+                    Este formulario está destinado a recopilar sus <strong>comentarios, sugerencias e inquietudes</strong> sobre la versión 2026 de los AEC. Como agentes fundamentales en la institución, su mirada pedagógica y experiencia son claves para la consolidación de estos acuerdos.
+                </p>
+            </div>
+        </header>
+
+        <form id="aec-docentes-form" class="space-y-6" action="/submit" method="post" target="hidden-iframe">
+            
+            <!-- Datos Docente -->
+            <div class="section-card border-l-4 border-indigo-500">
+                <h2 class="text-2xl font-bold text-indigo-700 mb-4 flex items-center">
+                    <span class="mr-3 text-2xl">👩‍🏫</span> Datos Personales y Profesionales
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nombre" class="block text-slate-700 font-semibold mb-2">Nombre y Apellido</label>
+                        <input type="text" id="nombre" name="nombre" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors" required>
+                    </div>
+                    <div>
+                        <label for="cargo" class="block text-slate-700 font-semibold mb-2">Cargo(s) o Materia(s)</label>
+                        <input type="text" id="cargo" name="cargo" placeholder="Ej: Preceptor, Matemática 2do Año..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors" required>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 1. Relaciones Interpersonales -->
+            <div class="section-card border-l-4 border-teal-500">
+                <h2 class="text-xl md:text-2xl font-bold text-teal-700 mb-3 flex items-center">
+                    <span class="mr-3 text-2xl">🗣️</span> 1. Normas sobre las Relaciones Interpersonales
+                </h2>
+                <div class="mb-4 text-slate-600 text-sm md:text-base space-y-2">
+                    <p><strong>Puntos clave:</strong> Uso de la palabra, trato digno e inclusivo, acuerdos de aula y resolución de diferencias.</p>
+                    <p class="text-slate-500 italic">¿Considera que estas normas son claras y aplicables en su práctica diaria? ¿Qué estrategias sugeriría para fortalecer el trato digno y los acuerdos en el aula?</p>
+                </div>
+                <textarea name="comentario_relaciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 transition-colors" placeholder="Sus comentarios aquí..."></textarea>
+            </div>
+
+            <!-- 2. Cuidado de lo Común y Ajeno -->
+            <div class="section-card border-l-4 border-amber-500">
+                <h2 class="text-xl md:text-2xl font-bold text-amber-600 mb-3 flex items-center">
+                    <span class="mr-3 text-2xl">🏫</span> 2. Cuidado de lo Común y lo Ajeno
+                </h2>
+                <div class="mb-4 text-slate-600 text-sm md:text-base space-y-2">
+                    <p><strong>Puntos clave:</strong> Preservación del edificio, uso de celulares, vestimenta, consumo de alimentos y permanencia en la institución.</p>
+                    <p class="text-slate-500 italic">¿Qué dificultades observa en el cumplimiento de estas pautas (ej. uso de celulares o consumo de alimentos)? ¿Cómo podemos abordarlas institucionalmente?</p>
+                </div>
+                <textarea name="comentario_cuidado" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-colors" placeholder="Sus sugerencias sobre el cuidado del espacio e insumos..."></textarea>
+            </div>
+
+            <!-- 3. Régimen de Sanciones -->
+            <div class="section-card border-l-4 border-rose-500">
+                <h2 class="text-xl md:text-2xl font-bold text-rose-600 mb-3 flex items-center">
+                    <span class="mr-3 text-2xl">⚖️</span> 3. Régimen de Sanciones Formativas
+                </h2>
+                <div class="mb-4 text-slate-600 text-sm md:text-base space-y-2">
+                    <p><strong>Puntos clave:</strong> Enfoque pedagógico y restaurativo (sancionar es educar), faltas leves, graves y muy graves.</p>
+                    <p class="text-slate-500 italic">¿Qué opina sobre la clasificación de transgresiones? ¿Considera viables las medidas formativas y reparadoras propuestas desde su rol docente?</p>
+                </div>
+                <textarea name="comentario_sanciones" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 transition-colors" placeholder="Sus observaciones pedagógicas sobre las sanciones..."></textarea>
+            </div>
+
+            <!-- 4. Procedimiento Institucional -->
+            <div class="section-card border-l-4 border-sky-500">
+                <h2 class="text-xl md:text-2xl font-bold text-sky-600 mb-3 flex items-center">
+                    <span class="mr-3 text-2xl">⚙️</span> 4. Procedimiento Institucional y CEC
+                </h2>
+                <div class="mb-4 text-slate-600 text-sm md:text-base space-y-2">
+                    <p><strong>Puntos clave:</strong> Intervención del Consejo Escolar de Convivencia (CEC), mediación y acompañamiento.</p>
+                    <p class="text-slate-500 italic">¿Tiene alguna inquietud sobre cómo se activa el protocolo ante faltas graves? ¿Cómo podemos mejorar la comunicación durante estos procedimientos?</p>
+                </div>
+                <textarea name="comentario_aplicacion" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-colors" placeholder="Sus reflexiones sobre los procedimientos institucionales..."></textarea>
+            </div>
+
+            <!-- 5. Sugerencias Generales -->
+            <div class="section-card border-l-4 border-emerald-500">
+                <h2 class="text-xl md:text-2xl font-bold text-emerald-600 mb-3 flex items-center">
+                    <span class="mr-3 text-2xl">💡</span> 5. Sugerencias Generales
+                </h2>
+                <p class="text-slate-600 mb-4 italic">Cualquier otro aporte, modificación en la redacción, o tema que considere que no se encuentra contemplado en la versión 2026 de los AEC.</p>
+                <textarea name="sugerencias_generales" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-colors" placeholder="Aportes adicionales..."></textarea>
+            </div>
+ 
+            <!-- Submit -->
+            <div class="text-center mt-8">
+                <button type="submit" class="w-full md:w-auto bg-blue-600 text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all transform hover:-translate-y-1">
+                    Enviar Aportes Docentes 🚀
+                </button>
+            </div>
+        </form>
+
+        <div id="iframe-container"></div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden fixed top-0 left-0 w-full h-full flex items-center justify-center bg-slate-900 bg-opacity-80 z-50 px-4">
+            <div class="bg-white p-8 md:p-10 rounded-3xl text-center max-w-md w-full shadow-2xl transform scale-100 transition-transform">
+                <div class="text-5xl mb-4">✅</div>
+                <h3 class="text-2xl font-bold text-emerald-600 mb-3">¡Aportes Enviados!</h3>
+                <p class="text-slate-600 mb-6">Su mirada es indispensable para construir Acuerdos Escolares de Convivencia más sólidos, democráticos e inclusivos. ¡Muchas gracias, colega!</p>
+                <button onclick="closeSuccessMessage()" class="w-full bg-slate-800 text-white font-semibold py-3 px-6 rounded-xl hover:bg-slate-700 focus:outline-none transition-colors">Volver al inicio</button>
+            </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="mt-12 bg-white p-6 rounded-3xl shadow-sm text-center border border-slate-200">
+            <h2 class="text-xl font-bold text-slate-700 mb-3 flex items-center justify-center">
+                <span class="mr-2">📱</span> Compartir con otros docentes
+            </h2>
+            <p class="text-slate-500 mb-4 text-sm">Escanee el código QR para compartir este formulario en la sala de profesores.</p>
+            <canvas id="qr-code" class="mx-auto rounded-xl border-4 border-slate-100 shadow-sm"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('aec-docentes-form');
+        const successMessage = document.getElementById('success-message');
+        const submitButton = form.querySelector('button[type="submit"]');
+        const qrCodeCanvas = document.getElementById('qr-code');
+
+        function showSuccess() {
+            successMessage.classList.remove('hidden');
+            form.reset();
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Enviar Aportes Docentes 🚀';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeSuccessMessage() {
+            successMessage.classList.add('hidden');
+        }
+
+        function generateQRCode() {
+            try {
+                new QRious({
+                    element: qrCodeCanvas,
+                    value: 'https://bit.ly/aec-docentes',
+                    size: 200,
+                    padding: 10,
+                    level: 'H'
+                });
+            } catch (error) {
+                console.error('Error al generar el código QR:', error);
+            }
+        }
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Procesando... ⏳';
+
+            const iframe = document.createElement('iframe');
+            const iframeId = 'hidden-iframe-' + new Date().getTime();
+            iframe.name = iframeId;
+            iframe.style.display = 'none';
+            document.getElementById('iframe-container').appendChild(iframe);
+
+            iframe.onload = function() {
+                showSuccess();
+                setTimeout(() => iframe.remove(), 100);
+            };
+
+            form.target = iframeId;
+            form.submit();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            generateQRCode();
+        });
+    </script>
+</body>
+</html>
