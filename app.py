@@ -101,7 +101,9 @@ def download_data():
     response.headers['Content-Disposition'] = 'attachment;filename=respuestas_docentes.csv'
     return response
 
+# Call init_db() here so it runs when PythonAnywhere imports the app
+with app.app_context():
+    init_db()
+
 if __name__ == '__main__':
-    with app.app_context():
-        init_db()
     app.run(port=5002, debug=True)
